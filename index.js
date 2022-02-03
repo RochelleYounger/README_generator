@@ -1,5 +1,7 @@
 // TODO: Include packages needed for this application
+const fs = require("fs");
 const inquirer = require("inquirer");
+const generateMarkdown = require("./utils/generateMarkdown.js")
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -108,7 +110,7 @@ const questions = [
     },
     {
         type: "input",
-        name: "test",
+        name: "tests",
         message: "Please enter test instructions. (Required)",
         validate: input => {
             if (input) {
@@ -126,6 +128,32 @@ const questions = [
             }
         }
     },
+    {
+        type: "input",
+        name: "github",
+        message: "Please enter your github username. (Required)",
+        validate: input => {
+            if (input) {
+                return true;
+            } else {
+                console.log("Field cannot be left empty.");
+                return false;
+            }
+        }
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "Please enter your email address. (Required)",
+        validate: input => {
+            if (input) {
+                return true;
+            } else {
+                console.log("Field cannot be left empty.");
+                return false;
+            }
+        }
+    }
 ];
 
 // prompts user for info
@@ -137,11 +165,16 @@ const logData = data => console.log(data);
 
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(data) {
+    fs.writeFile("./dist/README.md", data, err => {
+        if (err) throw err;
+        console.log('Success!');
+    });
+};
 
 // TODO: Create a function to initialize app
 function init() {
-    userPrompt().then(logData);
+    userPrompt().then(data => generateMarkdown(data)).then(data => writeToFile(data));
 }
 
 // Function call to initialize app
