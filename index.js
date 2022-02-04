@@ -166,7 +166,7 @@ const logData = data => console.log(data);
 
 // TODO: Create a function to write README file
 function writeToFile(data) {
-    fs.writeFile("./dist/README.md", data, err => {
+    fs.writeFile("./sample/sample_README.md", data, err => {
         if (err) throw err;
         console.log('Success!');
     });
