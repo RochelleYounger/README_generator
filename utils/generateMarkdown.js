@@ -79,7 +79,7 @@ ${description}
 
   * [Installation](#installation)
   * [Usage](#usage)
-  * [Contributing](#contributing)${renderLicenseLink(license)}${renderTestsLink(tests)}
+  * [Contributing](#contributing)${renderTestsLink(tests)}${renderLicenseLink(license)}
   * [Questions](#questions)
 
 
